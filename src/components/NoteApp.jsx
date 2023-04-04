@@ -36,7 +36,7 @@ class NoteApp extends React.Component {
 
     render() {
         return (
-            <div classTitle="note-app">
+            <div className="note-app">
                 <h1>Aplikasi Catatan</h1>
                 <h2>Buat Catatan</h2>
                 <NoteInput addNote={this.onAddNoteHandler} />
