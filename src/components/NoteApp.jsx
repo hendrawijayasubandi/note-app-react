@@ -42,6 +42,7 @@ class NoteApp extends React.Component {
                 <NoteInput addNote={this.onAddNoteHandler} />
                 <h2>Catatan Aktif</h2>
                 <NoteList notes={this.state.notes} on Delete={this.onDeleteHandler} />
+                <h2>Arsip</h2>
             </div>
         );
     }
