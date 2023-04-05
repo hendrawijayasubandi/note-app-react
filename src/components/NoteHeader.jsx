@@ -1,11 +1,12 @@
 import React from 'react';
+import NoteInput from './NoteInput';
 
-function NoteHeader({ title }) {
+function NoteHeader({ search, setQuery }) {
     return (
         <div className="note-app__header">
             <h1>Aplikasi Catatan</h1>
             <div class="note-search">
-                <input type="text" placeholder="Cari catatan ..." value={this.state.title} onChange={this.onTitleChangeEventHandler} />
+                <NoteInput type="search" placeholder="Cari catatan ..." value={search} onChange={setQuery} />
             </div>
         </div>
     );

@@ -1,6 +1,7 @@
 import React from 'react';
 import NoteList from './NoteList';
 import { getInitialData } from '../utils/index';
+
 import NoteInput from './NoteInput';
 import NoteHeader from './NoteHeader';
 
@@ -36,13 +37,11 @@ class NoteApp extends React.Component {
             }
         })
     }
+
     render() {
         return (
-            <div className="note-item__header">
-                <h1>Aplikasi Catatan</h1>
-                <div class="note-search">
-                    <input type="text" placeholder="Cari catatan ..." value={this.state.title} onChange={this.onTitleChangeEventHandler} />
-                </div>
+            
+            <div className="note-app__body">
                 <h2>Buat Catatan</h2>
                 <NoteInput addNote={this.onAddNoteHandler} />
                 <h2>Catatan Aktif</h2>
