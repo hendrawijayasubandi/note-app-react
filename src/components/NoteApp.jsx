@@ -3,7 +3,7 @@ import NoteList from './NoteList';
 import { getInitialData } from '../utils/index';
 
 import NoteInput from './NoteInput';
-import NoteHeader from './NoteHeader';
+// import NoteHeader from './NoteHeader';
 
 class NoteApp extends React.Component {
     constructor(props) {
@@ -40,9 +40,7 @@ class NoteApp extends React.Component {
 
     render() {
         return (
-            
             <div className="note-app__body">
-                <h2>Buat Catatan</h2>
                 <NoteInput addNote={this.onAddNoteHandler} />
                 <h2>Catatan Aktif</h2>
                 <NoteList notes={this.state.notes} onDelete={this.onDeleteHandler} />
