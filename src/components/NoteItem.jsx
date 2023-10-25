@@ -3,7 +3,7 @@ import NoteItemBody from './NoteItemBody';
 import DeleteButton from './DeleteButton';
 import ArchiveButton from './ArchiveButton';
 
-function NoteItem({ title, body, createdAt, id, onDelete, onArchive }) {
+function NoteItem({ title, body, createdAt, id, onDelete, onArchive, onMove }) {
     return (
         <div className="note-item">
             <div className="note-item__content">
