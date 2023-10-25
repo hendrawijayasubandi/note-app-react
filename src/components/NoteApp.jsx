@@ -28,11 +28,18 @@ class NoteApp extends React.Component {
 
     onArchiveHandler(id) {
         const { notes, archivedNotes } = this.state;
-        const noteToArchive = notes.find(note => note.id === id);
+        const updatedNotes = notes.map(note => {
+            if (note.id === id) {
+                return { ...note, archived: true };
+            }
+            return note;
+        });
+
+        const noteToArchive = updatedNotes.find(note => note.id === id);
 
         if (noteToArchive) {
             this.setState({
-                notes: notes.filter(note => note.id !== id),
+                notes: updatedNotes.filter(note => note.id !== id),
                 archivedNotes: [...archivedNotes, noteToArchive],
             });
         }
