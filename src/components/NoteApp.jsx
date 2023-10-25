@@ -10,15 +10,30 @@ class NoteApp extends React.Component {
         super(props);
         this.state = {
             notes: getInitialData(),
+            archivedNotes: [],
         }
 
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
         this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
+        this.onArchiveHandler = this.onArchiveHandler.bind(this);
     }
 
     onDeleteHandler(id) {
         const notes = this.state.notes.filter(note => note.id !== id);
         this.setState({ notes });
+    }
+
+    onArchiveHandler(id) {
+        const { notes, archivedNotes } = this.state;
+        const noteToArchive = notes.find(note => note.id === id);
+
+        if (noteToArchive) {
+            // Arsipkan catatan dengan memindahkannya dari notes ke archivedNotes
+            this.setState({
+                notes: notes.filter(note => note.id !== id),
+                archivedNotes: [...archivedNotes, noteToArchive],
+            });
+        }
     }
 
     onAddNoteHandler({ title, body }) {
@@ -43,8 +58,9 @@ class NoteApp extends React.Component {
             <div className="note-app__body">
                 <NoteInput addNote={this.onAddNoteHandler} />
                 <h2>Catatan Aktif</h2>
-                <NoteList notes={this.state.notes} onDelete={this.onDeleteHandler} />
+                <NoteList notes={this.state.notes} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
                 <h2>Arsip</h2>
+                <NoteList notes={this.state.archivedNotes} onDelete={this.onDeleteHandler} />
             </div>
         );
     }
