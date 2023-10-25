@@ -70,9 +70,10 @@ class NoteApp extends React.Component {
                     search={this.state.search}
                     setQuery={this.setQuery}
                     notes={this.state.notes}
-                    setFilteredNotes={this.setFilteredNotes} // Mengirimkan setFilteredNotes ke komponen NoteHeader
+                    setFilteredNotes={this.setFilteredNotes}
                 />
                 <div className="note-app__body">
+                    <NoteInput addNote={this.onAddNoteHandler} />
                     <h2>Catatan Aktif</h2>
                     <NoteList
                         notes={this.state.filteredNotes.length > 0 ? this.state.filteredNotes : this.state.notes}
