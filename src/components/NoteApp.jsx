@@ -62,6 +62,14 @@ class NoteApp extends React.Component {
         })
     }
 
+    searchArchivedNotes = (searchTerm) => {
+        const { archivedNotes } = this.state;
+        const filteredArchivedNotes = archivedNotes.filter(note =>
+            note.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        return filteredArchivedNotes;
+    }
+
     setQuery(query) {
         this.setState({ search: query });
     }
@@ -89,7 +97,13 @@ class NoteApp extends React.Component {
                         onArchive={this.onArchiveHandler}
                     />
                     <h2>Arsip</h2>
-                    <NoteList notes={this.state.archivedNotes} onDelete={this.onDeleteHandler} />
+                    <NoteList
+                        notes={this.state.search.length > 0
+                            ? this.searchArchivedNotes(this.state.search)
+                            : this.state.archivedNotes
+                        }
+                        onDelete={this.onDeleteHandler}
+                    />
                 </div>
             </div>
         );
