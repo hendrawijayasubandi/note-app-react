@@ -1,6 +1,5 @@
 import React from 'react';
 import NoteItem from './NoteItem';
-import ArchiveButton from './ArchiveButton';
 
 function NoteList({ notes, onDelete, onArchive }) {
     return (
