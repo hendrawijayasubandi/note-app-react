@@ -11,7 +11,7 @@ class NoteApp extends React.Component {
             notes: getInitialData(),
             archivedNotes: [],
             search: '',
-            filteredNotes: [], // Menambahkan filteredNotes untuk menyimpan catatan yang difilter.
+            filteredNotes: [],
         }
 
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
