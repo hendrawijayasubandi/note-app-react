@@ -18,7 +18,7 @@ class NoteApp extends React.Component {
         this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
         this.onArchiveHandler = this.onArchiveHandler.bind(this);
         this.setQuery = this.setQuery.bind(this);
-        this.setFilteredNotes = this.setFilteredNotes.bind(this); // Menambahkan setFilteredNotes
+        this.setFilteredNotes = this.setFilteredNotes.bind(this);
     }
 
     onDeleteHandler(id) {
