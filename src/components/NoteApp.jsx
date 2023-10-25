@@ -1,9 +1,8 @@
 import React from 'react';
 import NoteList from './NoteList';
 import { getInitialData } from '../utils/index';
-
 import NoteInput from './NoteInput';
-// import NoteHeader from './NoteHeader';
+import NoteHeader from './NoteHeader';
 
 class NoteApp extends React.Component {
     constructor(props) {
@@ -11,11 +10,15 @@ class NoteApp extends React.Component {
         this.state = {
             notes: getInitialData(),
             archivedNotes: [],
+            search: '',
+            filteredNotes: [], // Menambahkan filteredNotes untuk menyimpan catatan yang difilter.
         }
 
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
         this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
         this.onArchiveHandler = this.onArchiveHandler.bind(this);
+        this.setQuery = this.setQuery.bind(this);
+        this.setFilteredNotes = this.setFilteredNotes.bind(this); // Menambahkan setFilteredNotes
     }
 
     onDeleteHandler(id) {
@@ -52,14 +55,34 @@ class NoteApp extends React.Component {
         })
     }
 
+    setQuery(query) {
+        this.setState({ search: query });
+    }
+
+    setFilteredNotes(filteredNotes) {
+        this.setState({ filteredNotes });
+    }
+
     render() {
         return (
-            <div className="note-app__body">
-                <NoteInput addNote={this.onAddNoteHandler} />
-                <h2>Catatan Aktif</h2>
-                <NoteList notes={this.state.notes} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
-                <h2>Arsip</h2>
-                <NoteList notes={this.state.archivedNotes} onDelete={this.onDeleteHandler} />
+            <div>
+                <NoteHeader
+                    search={this.state.search}
+                    setQuery={this.setQuery}
+                    notes={this.state.notes}
+                    setFilteredNotes={this.setFilteredNotes} // Mengirimkan setFilteredNotes ke komponen NoteHeader
+                />
+                <div className="note-app__body">
+                    <h2>Catatan Aktif</h2>
+                    <NoteList
+                        notes={this.state.filteredNotes.length > 0 ? this.state.filteredNotes : this.state.notes}
+                        search={this.state.search}
+                        onDelete={this.onDeleteHandler}
+                        onArchive={this.onArchiveHandler}
+                    />
+                    <h2>Arsip</h2>
+                    <NoteList notes={this.state.archivedNotes} onDelete={this.onDeleteHandler} />
+                </div>
             </div>
         );
     }
