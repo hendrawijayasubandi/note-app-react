@@ -28,7 +28,6 @@ class NoteApp extends React.Component {
         const noteToArchive = notes.find(note => note.id === id);
 
         if (noteToArchive) {
-            // Arsipkan catatan dengan memindahkannya dari notes ke archivedNotes
             this.setState({
                 notes: notes.filter(note => note.id !== id),
                 archivedNotes: [...archivedNotes, noteToArchive],
