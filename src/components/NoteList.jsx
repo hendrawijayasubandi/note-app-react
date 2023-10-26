@@ -14,7 +14,7 @@ function NoteList({ notes, onDelete, onArchive }) {
                         key={note.id}
                         id={note.id}
                         onDelete={onDelete}
-                        onArchive={() => onArchive(note.id)}
+                        onArchive={onArchive}
                         {...note}
                     />
                 ))
