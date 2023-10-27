@@ -36,7 +36,8 @@ class NoteApp extends React.Component {
         const { notes, archivedNotes } = this.state;
         const updatedNotes = notes.map(note => {
             if (note.id === id) {
-                return { ...note, archived: true };
+                // return { ...note, archived: true };
+                return { ...note, archived: !note.archived };
             }
             return note;
         });
@@ -109,6 +110,7 @@ class NoteApp extends React.Component {
                             : this.state.archivedNotes
                         }
                         onDelete={this.onDeleteHandler}
+                        onArchive={this.onArchiveHandler}
                     />
                 </div>
             </div>
